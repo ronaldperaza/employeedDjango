@@ -5,6 +5,8 @@ from django.views.generic import (
     DetailView,
     CreateView,
     TemplateView,
+    UpdateView,
+    DeleteView,
 )
 
 from .models import Empleado
@@ -74,6 +76,7 @@ class SuccessView(TemplateView):
 class EmpleadoCreateView(CreateView):
     model = Empleado
     template_name = "persona/add.html"
+    # estos son los campos que queremos mostrar
     fields = [
         'firts_name',
         'last_name',
@@ -84,19 +87,42 @@ class EmpleadoCreateView(CreateView):
     success_url = reverse_lazy('persona_app:correcto')
 
     def form_valid(self, form):
-
         #logica del proceso
-    
-
-
+        empleado = form.save()
+        empleado.full_name = empleado.firts_name + ' ' + empleado.last_name
+        empleado.save()
         return super(EmpleadoCreateView,self).form_valid(form)
 
+class EmpleadoUpdateView(UpdateView):
+    model = Empleado
+    template_name = "persona/update.html"
+
+    # estos son los campos que queremos actualizar
+    fields = [
+        'firts_name',
+        'last_name',
+        'job',
+        'departamento',
+        'habilidades',
+    ]
+    success_url = reverse_lazy('persona_app:correcto')
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        return super().post(request, *args, **kwargs)
+    
+
+    def form_valid(self, form):
+        return super(EmpleadoUpdateView,self).form_valid(form)
 
 
 
+class EmpleadoDeleteView(DeleteView):
+    model = Empleado
+    template_name = "persona/delete.html"
 
-
-
+    success_url = reverse_lazy('persona_app:correcto')
 
 
 

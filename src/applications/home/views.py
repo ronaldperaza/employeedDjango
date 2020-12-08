@@ -2,7 +2,13 @@ from django.db import models
 from applications.home.models import Prueba
 from django.shortcuts import render
 
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import (
+    TemplateView, 
+    ListView, 
+    CreateView,
+)
+from .models import Prueba
+from .forms import PruebaForm
 
 # Create your views here.
 
@@ -26,4 +32,5 @@ class ListarPrueba(ListView):
 class PruebaCreateView(CreateView):
     template_name = "home/add.html"
     model = Prueba
-    fields = ['titulo', 'subtitulo', 'cantidad']
+    form_class = PruebaForm
+    success_url = '/'
