@@ -3,12 +3,12 @@ from pathlib import Path
 import os
 
 from unipath import Path
-BASE_DIR = BASE_DIR = Path(__file__).ancestor(3)
+BASE_DIR = Path(__file__).ancestor(3)
 
 # cambiar por unipath (
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
+#BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+w67)urbe9!31+1j2c9ye8nj#ky-)o$)@xcarf^f1f(ctx@^z1'
