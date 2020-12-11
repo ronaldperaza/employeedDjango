@@ -6,7 +6,8 @@ from . import views
 app_name = "persona_app"
 
 urlpatterns = [
-    path('listar-todo-empleado/', views.ListAllEmpleado.as_view()),
+    path('', views.InicioView .as_view(), name='inicio'),
+    path('listar-todo-empleado/', views.ListAllEmpleado.as_view(), name='empleados_all'),
     path('listar-por-area/<shorname>', views.ListByAreaEmpleado.as_view()),
     path('buscar-empleado/', views.listEmpleadoByKwords.as_view()),
     path('listar-habilidades-empleado/', views.ListHabilidadesEmpleado.as_view()),

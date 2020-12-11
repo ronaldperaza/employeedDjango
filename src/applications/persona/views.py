@@ -11,10 +11,14 @@ from django.views.generic import (
 
 from .models import Empleado
 
+class InicioView(TemplateView):
+    """ Vista que carga la pagiande inicio """
+    template_name = "inicio.html"
+
 class ListAllEmpleado(ListView):    
     """ lista de todos los empleado """
     template_name = "persona/list_all.html"
-    paginate_by = 3
+    paginate_by = 4
     ordering = 'firts_name'
     model = Empleado
     context_object_name = "lista"
