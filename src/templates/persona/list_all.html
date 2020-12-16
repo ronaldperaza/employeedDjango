@@ -3,45 +3,71 @@
 {% include "includes/header.html" %}
 
 <div class="grid-container">
-  <div class="grid-x">
+  <div class="grid-x mt-3">
     <h1 class="cell">Lista Empleados</h1>
-    <div class="cell grid-x grid-margin-x">
+    <form class="cell grid-x grid-margin-x mt-3" method="GET">
+      {% csrf_token %}
       <div class="cell large-7">
-        <input type="text" placeholder="Buscar Empleado" />
+        <input
+          type="text"
+          id="kword"
+          name="kword"
+          placeholder="buscar empleado"
+        />
       </div>
       <div class="cell large-2">
-        <button type="button" class="success button">Save</button>
+        <button type="submit" class="success button">Buscar</button>
       </div>
-    </div>
-    <div class="cell">
+    </form>
+    <div class="cell mt-3">
       <table>
         <thead>
           <tr>
-            <th width="200">Id</th>
-            <th>Nombres</th>
-            <th width="150">Apellidos</th>
-            <th width="150">Departamento</th>
-            <th width="150">Accion</th>
+            <th width="200">ID</th>
+            <th>NOMBRES</th>
+            <th width="150">APELLIDOS</th>
+            <th width="150">DEPARTAMENTO</th>
+            <th width="150">ACCION</th>
           </tr>
         </thead>
         <tbody>
-        
-        {% for e  in object_list %}
-            
+          {% for e in empleados %}
           <tr>
             <td>{{ e.id }}</td>
-            <td>{{ e.firts_name }}</td>              
-            <td>{{ e.last_name }}</td>
+            <td>{{ e.firts_name }}</td>
+            <td>C{{ e.last_name }}</td>
             <td>{{ e.departamento }}</td>
-            <td><a class="button Success" href="#">Ver</a></td>
-            
-          </tr>         
-        {% endfor %}            
+            <td>
+              <a class="button success" href="{% url 'persona_app:empleado_detail' e.id %}">Ver</a>
+            </td>
+          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
+
+    <div class="cell">
+    
+    {% if is_paginated %}
+      
+      <nav aria-label="Pagination">
+        <ul class="pagination">
+          
+          {% if page_obj.has_previous %}
+             <li class="pagination-previous">Atras</li>
+            
+          {% endif %}
+            
+          <li><a href="#" aria-label="Page 2">2</a></li>
+
+          <li class="pagination-next"><a href="#" aria-label="Next page">Siguiente</a>
+          </li>
+        </ul>
+      </nav>
+      {% endif %}
+      
+    </div>
   </div>
-  
 </div>
 
 {% endblock content %}

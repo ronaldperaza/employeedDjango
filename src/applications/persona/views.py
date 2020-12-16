@@ -20,8 +20,19 @@ class ListAllEmpleado(ListView):
     template_name = "persona/list_all.html"
     paginate_by = 4
     ordering = 'firts_name'
-    model = Empleado
-    context_object_name = "lista"
+    context_object_name = 'empleados'
+    
+
+    """ funncion para realizar filtraciones en el buscar
+        icontains bucar cualquier letra en las palabras
+    """
+    def get_queryset(self):
+        
+        palabra_clave = self.request.GET.get("kword", '')
+        lista = Empleado.objects.filter(
+            firts_name__icontains= palabra_clave         
+        )
+        return lista
 
 
 class ListByAreaEmpleado(ListView):    
@@ -30,7 +41,7 @@ class ListByAreaEmpleado(ListView):
     template_name = "persona/list_by_area.html"
     
     def get_queryset(self):
-        # kwargs sirve paa recogee lo que nos envian por url
+        # kwargs sirve para recoger lo que nos envian por url
         area = self.kwargs['shorname']
         lista = Empleado.objects.filter(
             departamento__shor_name = area 

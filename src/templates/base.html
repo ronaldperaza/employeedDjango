@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+    <link rel="stylesheet" href="{% static 'boo/css/bootstrap.min.css' %}">
     <title>{% block title %} {% endblock title %}</title>
 </head>
 <body>
     {% block content %} {% endblock content %}
+
+
+    {% comment %} Scripts for boostrap {% endcomment %}
+    <script src="{% static 'boo/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'boo/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'boo/js/bootstrap.js' %}"></script>
+    <script src="{% static 'boo/js/bootstrap.min.js' %}"></script>
 
     <script src="{% static 'js/vendor/jquery.js' %}"></script>
     <script src="{% static 'js/vendor/what-input.js' %}"></script>
