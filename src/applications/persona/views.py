@@ -39,6 +39,7 @@ class ListByAreaEmpleado(ListView):
     """ lista empleado que pertenecen a un area """
 
     template_name = "persona/list_by_area.html"
+    context_object_name = "empleados"
     
     def get_queryset(self):
         # kwargs sirve para recoger lo que nos envian por url
@@ -47,6 +48,17 @@ class ListByAreaEmpleado(ListView):
             departamento__shor_name = area 
         )
         return lista
+
+
+class ListaEmpleadoAdmin(ListView):    
+    """ lista de todos los empleado """
+    template_name = "persona/lista_empleados.html"
+    paginate_by = 6
+    ordering = 'firts_name'
+    context_object_name = 'empleados'
+    model = Empleado    
+
+
 
 class listEmpleadoByKwords(ListView):
     """ lista de empleado por palabra Clave """
@@ -120,7 +132,7 @@ class EmpleadoUpdateView(UpdateView):
         'departamento',
         'habilidades',
     ]
-    success_url = reverse_lazy('persona_app:correcto')
+    success_url = reverse_lazy('persona_app:empleados_admin')
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -137,14 +149,4 @@ class EmpleadoDeleteView(DeleteView):
     model = Empleado
     template_name = "persona/delete.html"
 
-    success_url = reverse_lazy('persona_app:correcto')
-
-
-
-
-
-
-
-
-
-
+    success_url = reverse_lazy('persona_app:empleados_admin')

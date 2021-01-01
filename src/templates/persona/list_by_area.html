@@ -1,10 +1,49 @@
-<h1>List of employeed by area category</h1>
+{% extends 'base.html' %} 
 
-<ul>
-{% for empleado in object_list %}
-    <li>{{ empleado }}</li>
+{% block title %} Lista empleado por departamento 
 
-{% endfor %}
+{% endblock title %} 
 
+{% block content %} 
 
-</ul>
+{% include "includes/header.html" %}
+
+<div class="grid-container">
+  <div class="grid-x">
+    <div class="cell">Empleados por Area:</div>
+    <div class="cell">
+      <div class="cell mt-3">
+        <table>
+          <thead>
+            <tr>
+              <th width="200">ID</th>
+              <th>NOMBRES</th>
+              <th width="150">APELLIDOS</th>
+              <th width="150">DEPARTAMENTO</th>
+              <th width="150">ACCION</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for e in empleados %}
+            <tr>
+              <td>{{ e.id }}</td>
+              <td>{{ e.firts_name }}</td>
+              <td>C{{ e.last_name }}</td>
+              <td>{{ e.departamento }}</td>
+              <td>
+                <a
+                  class="button success"
+                  href="{% url 'persona_app:empleado_detail' e.id %}"
+                  >Ver</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
