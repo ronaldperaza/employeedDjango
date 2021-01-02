@@ -1,8 +1,63 @@
+{% extends 'base.html' %}
+
+ {% block title %} 
+  Registro de Empleado  
+ {% endblock title %} 
+ 
+ {% block content %} 
+ 
+ {% include "includes/header.html" %}
+
+
+<div class="grid-container">
+  <div class="grid-x">
+    <h1 class="cell mt-3">Registrar Empleado</h1>
+{% comment %}
+ Colocar esto para guardar archivos multimedia desde fomulario enctype="multipart/form-data"
+{% endcomment %}
+    
+    <form class="cell grid-x grid-margin-x" method="post" enctype="multipart/form-data" >{% csrf_token %}
+      <div class="large-6 cell mt-3">
+        <label>Nombres:
+          {{ form.firts_name }}
+        </label>
+      </div>
+      <div class="medium-6 cell mt-3">
+        <label>Apellidos:
+          {{ form.last_name }}
+        </label>
+      </div>
+      <div class="medium-6 cell mt-3">
+        <label>Trabajo:
+          {{ form.job }}
+        </label>
+      </div>
+      <div class="medium-6 cell mt-3">
+        <label>Departamento:
+          {{ form.departamento }}
+        </label>
+      </div>
+      <div class="medium-6 cell mt-3">
+        <label>Foto:
+          {{ form.avatar }}
+        </label>
+      </div>
+      <div class="medium-12 cell mt-3">
+        <label>Habilidades:
+          {{ form.habilidades }}
+        </label>
+        <div class="medium-12 cell mt-3">
+            <button type="submit" class="success button">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
+
 <h1>Personal Register</h1>
 
-<form method="post"> {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Agregar</button>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Agregar</button>
 </form>
-
-

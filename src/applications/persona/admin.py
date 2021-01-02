@@ -7,12 +7,13 @@ admin.site.register(Habilidades)
 
 class EmpleadoAdmin(admin.ModelAdmin):
     list_display = (
-        'id',
         'firts_name',
         'last_name',
         'departamento', 
         'job',
         'full_name',
+        'id',
+        
     )
 
     # decorador que comcatena nombre y apellido

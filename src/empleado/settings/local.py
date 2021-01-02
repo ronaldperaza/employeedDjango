@@ -23,4 +23,8 @@ STATIC_URL = '/static/'
 #ARCHIVO DE CONFIGURACION y guardado DE ARCHIVOS ESTATICOS
 STATICFILES_DIRS = [BASE_DIR.child('static')]
 
+#archivos multimesdia
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR.child('media')
+
 
