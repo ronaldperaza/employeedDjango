@@ -8,15 +8,10 @@
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text">Empelados</li>
-        <li>
-          <a href="{% url 'persona_app:empleados_all' %}">Listar</a>
-        </li>
-        {% comment %} 
-        
-        <li><a href="{% url 'departamento_app:nuevo_departamento' %}">Nuevo Departamento</a></li> {% endcomment %}        
+        <li><a href="{% url 'persona_app:empleados_all' %}">Listar</a></li> 
         <li><a href="{% url 'departamento_app:lista_departamento' %}">Departamentos</a></li>
         <li><a href="{% url 'persona_app:empleados_admin' %}">Administrar</a></li>
-        <li><a href="#">Nuevo Departamento</a></li>        
+        <li><a href="{% url 'departamento_app:nuevo_departamento' %}">Nuevo Departamento</a></li>        
       </ul>
     </div>
     <div class="top-bar-right">

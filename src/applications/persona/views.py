@@ -8,8 +8,12 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-
+# models
 from .models import Empleado
+
+#forms
+from .forms import EmpleadoForm
+
 
 class InicioView(TemplateView):
     """ Vista que carga la pagiande inicio """
@@ -104,14 +108,15 @@ class EmpleadoCreateView(CreateView):
     model = Empleado
     template_name = "persona/add.html"
     # estos son los campos que queremos mostrar
-    fields = [
-        'firts_name',
-        'last_name',
-        'job',
-        'departamento',
-        'habilidades',
-        'avatar',
-    ]
+    # fields = [
+    #     'firts_name',
+    #     'last_name',
+    #     'job',
+    #     'departamento',
+    #     'habilidades',
+    #     'avatar',
+    # ]
+    form_class = EmpleadoForm
     success_url = reverse_lazy('persona_app:empleados_admin')
 
     def form_valid(self, form):

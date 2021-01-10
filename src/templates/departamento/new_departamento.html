@@ -1,21 +1,31 @@
-<h1>New Department</h1>
+{% extends 'base.html' %}
+{% block title %}
+    Registrar Departamento
+{% endblock title %}
+{% block content %}
 
-<form method="post">{% csrf_token %}
-    <h3>Employeed Data</h3>
-    <p>
-        {{form.nombre}}
-    </p>
-    <p>
-        {{form.apellido}}
-    </p>
-    <h3>Department Data</h3>
-    <p>
-        {{form.departamento}}
-    </p>
-    <p>
-        {{form.shorname}}
-    </p>
+{% include 'includes/header.html' %}
 
-    <button type="submit">Save</button>
-
-</form>
+    <div class="grid-container">
+        <div class="grid-x">
+            <h1 class="cell">Registrar Departamento</h1>
+                <form class="cell callout grid-x grid-margin-x" method="POST">{% csrf_token %}
+                    <div class="medium-6 cell">
+                        <label>Nombres: {{ form.nombre }}</label>
+                    </div>
+                    <div class="medium-6 cell">
+                        <label>Apellidos {{ form.apellido }}</label>
+                    </div>
+                    <div class="medium-6 cell">
+                        <label>Departamento: {{ form.departamento }}</label>
+                    </div>
+                    <div class="medium-6 cell">
+                        <label>Shorname: {{ form.shorname }}</label>
+                    </div>
+                    <div class="medium-12 cell">
+                        <button type="submit" class="button">Guardar</button>
+                    </div>
+                </form>    
+        </div>
+    </div>
+{% endblock content %}
